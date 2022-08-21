@@ -47,26 +47,30 @@ class AppDelegate: NSObject, NSApplicationDelegate
     {
         do
         {
+            let font = NSFont(name: "Helvetica Neue", size: 18.0)
             let regex = try Regex(regexTextField.stringValue)
             let text = textField.string
             
-            var astr = AttributedString(text)
-            if let range1 = astr.range(of: text)
+            let astr = NSMutableAttributedString(string:text)
+            let wholerange = NSRange(location: 0, length: astr.length)
+            astr.addAttributes([.foregroundColor:NSColor.black,.font:font!], range: wholerange)
+            
+            
+            let matches = text.matches(of: regex)
+            for match in matches
             {
-                astr[range1].foregroundColor = .black
-                astr[range1].font = NSFont.systemFont(ofSize: 18)
-                
-                let matches = text.matches(of: regex)
-                for match in matches
-                {
-                    let subtext = text[match.range] //text.substring(with: match.range)
-                    if let range1 = astr.range(of: subtext)
-                    {
-                        astr[range1].foregroundColor = .green
-                    }
-                }
-                textField.textStorage?.setAttributedString(NSAttributedString(astr))
+                let rangeStartIndex = match.range.lowerBound
+                let rangeEndIndex = match.range.upperBound
+
+                let start = text.distance(from: text.startIndex, to: rangeStartIndex)
+                let length = text.distance(from: rangeStartIndex, to: rangeEndIndex)
+
+                let nsrange = NSMakeRange(start, length)
+
+                astr.addAttributes([.foregroundColor:NSColor.red,.font:font!], range: nsrange)
             }
+            
+            textField.textStorage?.setAttributedString(astr)
         }
         catch
         {
