@@ -52,20 +52,21 @@ class AppDelegate: NSObject, NSApplicationDelegate
             let regex = try Regex(regexTextField.stringValue)
             let text = textField.string
             
-            
-            var astr = AttributedString(textField.string)
-            let range1 = astr.range(of: textField.string)!
-            astr[range1].foregroundColor = .white
-            astr[range1].font = NSFont.systemFont(ofSize: 18)
-            
-            let matches = text.matches(of: regex)
-            for match in matches
-            {
-                let subtext = text[match.range] //text.substring(with: match.range)
-                let range1 = astr.range(of: subtext)!
-                astr[range1].foregroundColor = .green
-             }
-            textField.textStorage?.setAttributedString(NSAttributedString(astr))
+                var astr = AttributedString(textField.string)
+                if let range1 = astr.range(of: textField.string)
+                {
+                    astr[range1].foregroundColor = .black
+                    astr[range1].font = NSFont.systemFont(ofSize: 18)
+                    
+                    let matches = text.matches(of: regex)
+                    for match in matches
+                    {
+                        let subtext = text[match.range] //text.substring(with: match.range)
+                        let range1 = astr.range(of: subtext)!
+                        astr[range1].foregroundColor = .green
+                    }
+                    textField.textStorage?.setAttributedString(NSAttributedString(astr))
+                }
         }
         catch
         {
