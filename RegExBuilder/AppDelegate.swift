@@ -22,11 +22,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
         let text = "The first month of your subscription is free."
         var astr = AttributedString(text)
        
-        let range1 = astr.range(of: text)!
-        astr[range1].foregroundColor = .black
-        astr[range1].font = NSFont.systemFont(ofSize: 18)
-        
-        textField.textStorage?.setAttributedString(NSAttributedString(astr))
+        if let range1 = astr.range(of: text)
+        {
+            astr[range1].foregroundColor = .black
+            astr[range1].font = NSFont.systemFont(ofSize: 18)
+            textField.textStorage?.setAttributedString(NSAttributedString(astr))
+        }
         
         regexTextField.stringValue = "free"
     }
@@ -59,8 +60,10 @@ class AppDelegate: NSObject, NSApplicationDelegate
                 for match in matches
                 {
                     let subtext = text[match.range] //text.substring(with: match.range)
-                    let range1 = astr.range(of: subtext)!
-                    astr[range1].foregroundColor = .green
+                    if let range1 = astr.range(of: subtext)
+                    {
+                        astr[range1].foregroundColor = .green
+                    }
                 }
                 textField.textStorage?.setAttributedString(NSAttributedString(astr))
             }
