@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
        
         if let range1 = astr.range(of: text)
         {
-            astr[range1].foregroundColor = .black
+            astr[range1].foregroundColor = NSColor.systemBrown
             astr[range1].font = NSFont.systemFont(ofSize: 18)
             textField.textStorage?.setAttributedString(NSAttributedString(astr))
         }
@@ -53,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             
             let astr = NSMutableAttributedString(string:text)
             let wholerange = NSRange(location: 0, length: astr.length)
-            astr.addAttributes([.foregroundColor:NSColor.black,.font:font!], range: wholerange)
+            astr.addAttributes([.foregroundColor:NSColor.systemBrown,.font:font!], range: wholerange)
             
             
             let matches = text.matches(of: regex)
@@ -65,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
                 let start = text.distance(from: text.startIndex, to: rangeStartIndex)
                 let length = text.distance(from: rangeStartIndex, to: rangeEndIndex)
 
-                let nsrange = NSMakeRange(start, length)
+                let nsrange = NSMakeRange(start,length)
 
                 astr.addAttributes([.foregroundColor:NSColor.red,.font:font!], range: nsrange)
             }
@@ -77,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             Alert.showAlertInWindow(window: window, message: "Error in regexAction:", info: "\(error)")
             {
             }
-        cancel:
+            cancel:
             {
             }
 
