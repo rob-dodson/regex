@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
     @IBOutlet weak var regexTextField: NSTextField!
     @IBOutlet var textField: NSTextView!
+    @IBOutlet weak var shellText: NSTextField!
     
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
@@ -42,6 +43,79 @@ class AppDelegate: NSObject, NSApplicationDelegate
     {
         return true
     }
+    
+    
+    @IBAction func shellAction(_ sender: Any)
+    {
+        runShell()
+    }
+    
+    func runShell()
+    {
+        let process = Process()
+        process.launchPath = "/bin/sh"
+        var args = Array<String>()
+        args.append("-c")
+        for arg in shellText.stringValue.split(separator: " ")
+        {
+            args.append(String(arg))
+        }
+        process.arguments = args
+        
+        let readpipe = Pipe()
+        let readerrpipe = Pipe()
+        process.standardOutput = readpipe
+        process.standardError = readerrpipe
+        
+        var newText = ""
+        
+        do
+        {
+            try process.run()
+            
+            var moredata = true
+            
+            repeat
+            {
+                let data : Data = readerrpipe.fileHandleForReading.availableData
+                if data.count > 0
+                {
+                    let text = String(data: data, encoding:.utf8) ?? "err"
+                    newText = newText.appending(text)
+                }
+                else
+                {
+                    moredata = false
+                }
+            } while (moredata)
+             
+            repeat
+            {
+                let data : Data = readpipe.fileHandleForReading.availableData
+                if data.count > 0
+                {
+                    let text = String(data: data, encoding:.utf8) ?? "err"
+                    newText = newText.appending(text)
+                }
+                else
+                {
+                    moredata = false
+                }
+            } while (moredata)
+                                    
+            textField.string = newText
+        }
+        catch
+        {
+            Alert.showAlertInWindow(window: window, message: "Error in shell command:", info: "\(error)")
+            {
+            }
+            cancel:
+            {
+            }
+        }
+    }
+    
 
     @IBAction func regexAction(_ sender: Any)
     {
