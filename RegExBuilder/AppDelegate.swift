@@ -56,10 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         process.launchPath = "/bin/sh"
         var args = Array<String>()
         args.append("-c")
-        for arg in shellText.stringValue.split(separator: " ")
-        {
-            args.append(String(arg))
-        }
+        args.append(shellText.stringValue)
         process.arguments = args
         
         let readpipe = Pipe()
