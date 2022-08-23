@@ -18,9 +18,19 @@ class AppDelegate: NSObject, NSApplicationDelegate
     @IBOutlet var textField: NSTextView!
     @IBOutlet weak var shellText: NSTextField!
     
+    var boldfont : NSFont!
+    var font : NSFont!
+    var donestaring : Bool = false
+    
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
-        let text = "The first month of your subscription is free."
+        donestaring = false
+        
+        let fontManager = NSFontManager.shared
+        boldfont = fontManager.font(withFamily: "Helvetica Neue", traits: NSFontTraitMask.boldFontMask, weight: 0, size:18.0)
+        font = NSFont(name: "Helvetica Neue", size: 18.0)
+        
+        let text = "The first month of your subscription is free. Freedom"
         var astr = AttributedString(text)
        
         if let range1 = astr.range(of: text)
@@ -30,7 +40,9 @@ class AppDelegate: NSObject, NSApplicationDelegate
             textField.textStorage?.setAttributedString(NSAttributedString(astr))
         }
         
-        regexTextField.stringValue = "free"
+        regexTextField.stringValue = "(F)ree(dom)"
+        
+        donestaring = true
     }
     
     
@@ -116,9 +128,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
     @IBAction func regexAction(_ sender: Any)
     {
+        if donestaring == false
+        {
+            return
+        }
         do
         {
-            let font = NSFont(name: "Helvetica Neue", size: 18.0)
             let regex = try Regex(regexTextField.stringValue)
             let text = textField.string
             
@@ -138,7 +153,38 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
                 let nsrange = NSMakeRange(start,length)
 
+                    
                 astr.addAttributes([.foregroundColor:NSColor.red,.font:font!], range: nsrange)
+                
+
+                if (match.output.count > 1)
+                {
+                    print("CAPS \(match.output.count)")
+                    var skipfirst = true
+                    for output in match.output
+                    {
+                        if skipfirst
+                        {
+                            skipfirst = false
+                            continue
+                        }
+                        
+                        if let crange = output.range
+                        {
+                            let rangeStartIndex = crange.lowerBound
+                            let rangeEndIndex = crange.upperBound
+                            
+                            let start = text.distance(from: text.startIndex, to: rangeStartIndex)
+                            let length = text.distance(from: rangeStartIndex, to: rangeEndIndex)
+                            
+                            print("cap \(output.substring) \(start) \(length)")
+                            
+                            let cnsrange = NSMakeRange(start,length)
+                            
+                            astr.addAttributes([.foregroundColor:NSColor.blue,.font:boldfont!], range: cnsrange)
+                        }
+                    }
+                }
             }
             
             textField.textStorage?.setAttributedString(astr)
