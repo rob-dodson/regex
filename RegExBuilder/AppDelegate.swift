@@ -13,7 +13,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate
 {
     @IBOutlet var window: NSWindow!
-
     @IBOutlet weak var regexTextField: NSTextField!
     @IBOutlet var textField: NSTextView!
     @IBOutlet weak var shellText: NSTextField!
@@ -21,22 +20,27 @@ class AppDelegate: NSObject, NSApplicationDelegate
     var boldfont : NSFont!
     var font : NSFont!
     var donestaring : Bool = false
+    var fontName : String!
+    var fontSize = 18.0
+    var fontColor = NSColor.systemBrown
+    
     
     func applicationDidFinishLaunching(_ aNotification: Notification)
     {
         donestaring = false
+        fontName = "Helvetica Neue"
         
         let fontManager = NSFontManager.shared
-        boldfont = fontManager.font(withFamily: "Helvetica Neue", traits: NSFontTraitMask.boldFontMask, weight: 0, size:18.0)
-        font = NSFont(name: "Helvetica Neue", size: 18.0)
+        boldfont = fontManager.font(withFamily: fontName, traits: NSFontTraitMask.boldFontMask, weight: 0, size:fontSize)
+        font = NSFont(name: fontName, size: fontSize)
         
         let text = "The first month of your subscription is free.\nFreedom's just another word."
         var astr = AttributedString(text)
        
         if let range1 = astr.range(of: text)
         {
-            astr[range1].foregroundColor = NSColor.systemBrown
-            astr[range1].font = NSFont.systemFont(ofSize: 18)
+            astr[range1].foregroundColor = fontColor
+            astr[range1].font = NSFont.systemFont(ofSize: fontSize)
             textField.textStorage?.setAttributedString(NSAttributedString(astr))
         }
         
@@ -48,12 +52,12 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     func applicationWillTerminate(_ aNotification: Notification)
     {
-        // Insert code here to tear down your application
     }
 
+    
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool
     {
-        return true
+        return false
     }
     
     
@@ -61,6 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     {
         runShell()
     }
+    
     
     func runShell()
     {
@@ -76,43 +81,26 @@ class AppDelegate: NSObject, NSApplicationDelegate
         process.standardOutput = readpipe
         process.standardError = readerrpipe
         
-        var newText = ""
-        
+       
         do
         {
+            var newText = String()
+            var errText = String()
+            
             try process.run()
             
-            var moredata = true
+            newText = readPipe(pipe: readpipe)
+            errText = readPipe(pipe: readerrpipe)
             
-            repeat
+           
+            if errText.count == 0
             {
-                let data : Data = readerrpipe.fileHandleForReading.availableData
-                if data.count > 0
-                {
-                    let text = String(data: data, encoding:.utf8) ?? "err"
-                    newText = newText.appending(text)
-                }
-                else
-                {
-                    moredata = false
-                }
-            } while (moredata)
-             
-            repeat
+                textField.string = newText
+            }
+            else
             {
-                let data : Data = readpipe.fileHandleForReading.availableData
-                if data.count > 0
-                {
-                    let text = String(data: data, encoding:.utf8) ?? "err"
-                    newText = newText.appending(text)
-                }
-                else
-                {
-                    moredata = false
-                }
-            } while (moredata)
-                                    
-            textField.string = newText
+                textField.string = "Error: \(errText)"
+            }
         }
         catch
         {
@@ -132,6 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         {
             return
         }
+        
         do
         {
             let regex = try Regex(regexTextField.stringValue)
@@ -159,7 +148,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
 
                 if (match.output.count > 1)
                 {
-                    print("CAPS \(match.output.count)")
                     var skipfirst = true
                     for output in match.output
                     {
@@ -176,8 +164,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
                             
                             let start = text.distance(from: text.startIndex, to: rangeStartIndex)
                             let length = text.distance(from: rangeStartIndex, to: rangeEndIndex)
-                            
-                            print("cap \(output.substring) \(start) \(length)")
                             
                             let cnsrange = NSMakeRange(start,length)
                             
@@ -197,10 +183,30 @@ class AppDelegate: NSObject, NSApplicationDelegate
             cancel:
             {
             }
-
         }
+    }
+   
+    
+    func readPipe(pipe:Pipe) -> String
+    {
+        var newText = String()
         
-        
+        var moredata = true
+        repeat
+        {
+            let data : Data = pipe.fileHandleForReading.availableData
+            if data.count > 0
+            {
+                let text = String(data: data, encoding:.utf8) ?? "err"
+                newText = newText.appending(text)
+            }
+            else
+            {
+                moredata = false
+            }
+        } while (moredata)
+                    
+        return newText
     }
     
 }
