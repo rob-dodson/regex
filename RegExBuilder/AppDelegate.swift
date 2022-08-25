@@ -134,15 +134,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             let matches = text.matches(of: regex)
             for match in matches
             {
-                let rangeStartIndex = match.range.lowerBound
-                let rangeEndIndex = match.range.upperBound
-
-                let start = text.distance(from: text.startIndex, to: rangeStartIndex)
-                let length = text.distance(from: rangeStartIndex, to: rangeEndIndex)
-
-                let nsrange = NSMakeRange(start,length)
-
-                    
+                let nsrange = RangeToNSRange(range: match.range, inText: text)
                 astr.addAttributes([.foregroundColor:NSColor.red,.font:font!], range: nsrange)
                 
 
@@ -159,14 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
                         
                         if let crange = output.range
                         {
-                            let rangeStartIndex = crange.lowerBound
-                            let rangeEndIndex = crange.upperBound
-                            
-                            let start = text.distance(from: text.startIndex, to: rangeStartIndex)
-                            let length = text.distance(from: rangeStartIndex, to: rangeEndIndex)
-                            
-                            let cnsrange = NSMakeRange(start,length)
-                            
+                            let cnsrange = RangeToNSRange(range: crange, inText: text)
                             astr.addAttributes([.foregroundColor:NSColor.blue,.font:boldfont!], range: cnsrange)
                         }
                     }
@@ -186,6 +171,18 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
    
+    
+    func RangeToNSRange(range:Range<String.Index>, inText text:String) -> NSRange
+    {
+        let rangeStartIndex = range.lowerBound
+        let rangeEndIndex = range.upperBound
+
+        let start = text.distance(from: text.startIndex, to: rangeStartIndex)
+        let length = text.distance(from: rangeStartIndex, to: rangeEndIndex)
+
+        return NSMakeRange(start,length)
+    }
+
     
     func readPipe(pipe:Pipe) -> String
     {
