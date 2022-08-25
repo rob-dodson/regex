@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         boldfont = fontManager.font(withFamily: "Helvetica Neue", traits: NSFontTraitMask.boldFontMask, weight: 0, size:18.0)
         font = NSFont(name: "Helvetica Neue", size: 18.0)
         
-        let text = "The first month of your subscription is free. Freedom"
+        let text = "The first month of your subscription is free.\nFreedom's just another word."
         var astr = AttributedString(text)
        
         if let range1 = astr.range(of: text)
@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             textField.textStorage?.setAttributedString(NSAttributedString(astr))
         }
         
-        regexTextField.stringValue = "(F)ree(dom)"
+        regexTextField.stringValue = "([Ff])ree(dom)*"
         
         donestaring = true
     }
