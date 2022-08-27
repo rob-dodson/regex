@@ -8,7 +8,6 @@
 import Cocoa
 
 
-
 @main
 class AppDelegate: NSObject, NSApplicationDelegate
 {
@@ -134,7 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             let matches = text.matches(of: regex)
             for match in matches
             {
-                let nsrange = RangeToNSRange(range: match.range, inText: text)
+                let nsrange = rangeToNSRange(range: match.range, inText: text)
                 astr.addAttributes([.foregroundColor:NSColor.red,.font:font!], range: nsrange)
                 
 
@@ -151,7 +150,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
                         
                         if let crange = output.range
                         {
-                            let cnsrange = RangeToNSRange(range: crange, inText: text)
+                            let cnsrange = rangeToNSRange(range: crange, inText: text)
                             astr.addAttributes([.foregroundColor:NSColor.blue,.font:boldfont!], range: cnsrange)
                         }
                     }
@@ -172,7 +171,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     }
    
     
-    func RangeToNSRange(range:Range<String.Index>, inText text:String) -> NSRange
+    func rangeToNSRange(range:Range<String.Index>, inText text:String) -> NSRange
     {
         let rangeStartIndex = range.lowerBound
         let rangeEndIndex = range.upperBound
