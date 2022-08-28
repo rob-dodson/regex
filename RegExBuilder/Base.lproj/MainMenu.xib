@@ -782,7 +782,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </comboBoxCell>
                         <connections>
-                            <action selector="combAction:" target="Voe-Tx-rLC" id="Eph-s7-RZA"/>
+                            <action selector="comboAction:" target="Voe-Tx-rLC" id="ZK0-Tw-Thc"/>
                         </connections>
                     </comboBox>
                 </subviews>
