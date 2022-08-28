@@ -14,6 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RegExBuilder" customModuleProvider="target">
             <connections>
+                <outlet property="regexComboBox" destination="syc-vx-Spy" id="v82-GH-qV1"/>
                 <outlet property="regexTextField" destination="jUZ-WW-CjY" id="D4z-se-zkI"/>
                 <outlet property="shellText" destination="SeW-fS-vlh" id="e66-ax-ooU"/>
                 <outlet property="textField" destination="KbD-C9-llz" id="Hb0-3a-1kd"/>
@@ -753,7 +754,7 @@
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jUZ-WW-CjY">
                         <rect key="frame" x="25" y="559" width="595" height="31"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="^.*$" drawsBackground="YES" id="5pk-Fd-Thv">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="5pk-Fd-Thv">
                             <font key="font" metaFont="system" size="22"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -773,6 +774,17 @@
                             <action selector="shellAction:" target="Voe-Tx-rLC" id="1IW-u5-JKx"/>
                         </connections>
                     </textField>
+                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="syc-vx-Spy">
+                        <rect key="frame" x="354" y="527" width="269" height="23"/>
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="Examples" completes="NO" numberOfVisibleItems="5" id="Ec4-AE-eFR">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </comboBoxCell>
+                        <connections>
+                            <action selector="combAction:" target="Voe-Tx-rLC" id="Eph-s7-RZA"/>
+                        </connections>
+                    </comboBox>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="SeW-fS-vlh" secondAttribute="trailing" constant="25" id="AvQ-9N-sSf"/>
@@ -782,6 +794,7 @@
                     <constraint firstAttribute="trailing" secondItem="jUZ-WW-CjY" secondAttribute="trailing" constant="25" id="STe-ZR-3Eb"/>
                     <constraint firstItem="SeW-fS-vlh" firstAttribute="top" secondItem="vp9-GQ-zyc" secondAttribute="bottom" constant="10" id="Tvp-al-233"/>
                     <constraint firstItem="vp9-GQ-zyc" firstAttribute="top" secondItem="gkr-oP-Hpw" secondAttribute="bottom" constant="25" id="d5m-DN-Jqe"/>
+                    <constraint firstItem="syc-vx-Spy" firstAttribute="top" secondItem="jUZ-WW-CjY" secondAttribute="bottom" constant="10" id="drm-kQ-atg"/>
                     <constraint firstItem="jUZ-WW-CjY" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="25" id="eN8-r9-7GT"/>
                     <constraint firstItem="jUZ-WW-CjY" firstAttribute="top" secondItem="ixj-vm-OCX" secondAttribute="bottom" constant="10" id="fIs-m4-ZT1"/>
                     <constraint firstItem="gkr-oP-Hpw" firstAttribute="top" secondItem="Aae-JI-EE5" secondAttribute="bottom" constant="10" id="hiZ-ow-NHs"/>
@@ -789,7 +802,9 @@
                     <constraint firstItem="Aae-JI-EE5" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="25" id="kj3-Km-CMC"/>
                     <constraint firstItem="SeW-fS-vlh" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="25" id="lcD-h6-3a1"/>
                     <constraint firstItem="gkr-oP-Hpw" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="25" id="nWH-hX-h7u"/>
+                    <constraint firstItem="syc-vx-Spy" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="355" id="nXp-7b-CTF"/>
                     <constraint firstItem="ixj-vm-OCX" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="25" id="oP6-wS-5gI"/>
+                    <constraint firstAttribute="trailing" secondItem="syc-vx-Spy" secondAttribute="trailing" constant="25" id="pmo-bP-gcU"/>
                     <constraint firstItem="ixj-vm-OCX" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="tES-vm-fqA"/>
                 </constraints>
             </view>

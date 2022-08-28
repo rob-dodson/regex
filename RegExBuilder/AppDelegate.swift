@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     @IBOutlet weak var regexTextField: NSTextField!
     @IBOutlet var textField: NSTextView!
     @IBOutlet weak var shellText: NSTextField!
+    @IBOutlet weak var regexComboBox: NSComboBox!
     
     var boldfont : NSFont!
     var font : NSFont!
@@ -45,7 +46,22 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         regexTextField.stringValue = "([Ff])ree(dom)*"
         
+        regexComboBox.addItem(withObjectValue: "All characters - .*")
+        regexComboBox.addItem(withObjectValue: "All digits - \\d*")
+        regexComboBox.addItem(withObjectValue: "First word - ^\\w+")
+        regexComboBox.addItem(withObjectValue: "All three letter words - \\b\\w{3}\\b")
+        regexComboBox.addItem(withObjectValue: "All upper case characters - [A-Z]+")
+        regexComboBox.addItem(withObjectValue: "Capture first word - ^(\\w+)\\b.*")
+    
         donestaring = true
+    }
+    
+    
+    @IBAction func combAction(_ sender: Any)
+    {
+        let parts = regexComboBox.stringValue.split(separator: " - ")
+        regexTextField.stringValue = String(parts[1])
+        regexAction(self)
     }
     
     
