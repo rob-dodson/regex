@@ -46,13 +46,23 @@ class AppDelegate: NSObject, NSApplicationDelegate
         
         regexTextField.stringValue = "([Ff])ree(dom)*"
         
-        regexComboBox.addItem(withObjectValue: "All characters - .*")
-        regexComboBox.addItem(withObjectValue: "All digits - \\d*")
-        regexComboBox.addItem(withObjectValue: "First word - ^\\w+")
-        regexComboBox.addItem(withObjectValue: "All three letter words - \\b\\w{3}\\b")
-        regexComboBox.addItem(withObjectValue: "All upper case characters - [A-Z]+")
-        regexComboBox.addItem(withObjectValue: "Capture first word - ^(\\w+)\\b.*")
-    
+        
+        let lines:[String] = ["All characters - .*",
+                              "All digits - \\d*",
+                              "First word (multiline) - (?m)^\\w+",
+                              "All three letter words - \\b\\w{3}\\b",
+                              "All upper case characters - [A-Z]+",
+                              "Capture first word - ^(\\w+)\\b.*",
+                              "Upper case characters - [:upper:]*",
+                              "Capitalized words - [A-Z]\\w+",
+                              "Lines ending with word ending with e - (?m)\\w+e$",
+        ]
+        
+        for line in lines
+        {
+            regexComboBox.addItem(withObjectValue:line)
+        }
+        
         donestaring = true
     }
     

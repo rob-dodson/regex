@@ -776,7 +776,7 @@
                     </textField>
                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="syc-vx-Spy">
                         <rect key="frame" x="354" y="527" width="269" height="23"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="Examples" completes="NO" numberOfVisibleItems="5" id="Ec4-AE-eFR">
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="Examples" completes="NO" numberOfVisibleItems="10" id="Ec4-AE-eFR">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
