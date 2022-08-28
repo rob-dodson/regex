@@ -674,7 +674,7 @@
                         <items>
                             <menuItem title="RegExBuilder Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                 <connections>
-                                    <action selector="showHelp:" target="-1" id="y7X-2Q-9no"/>
+                                    <action selector="regExHelpAction:" target="Voe-Tx-rLC" id="zuo-bn-CYY"/>
                                 </connections>
                             </menuItem>
                         </items>

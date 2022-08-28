@@ -112,7 +112,17 @@ class AppDelegate: NSObject, NSApplicationDelegate
         }
     }
     
-
+    
+    @IBAction func regExHelpAction(_ sender: Any)
+    {
+        guard let url = URL.init(string:"https://www.pcre.org/current/doc/html/pcre2syntax.html") else { return }
+        NSWorkspace.shared.open(url)
+        
+        guard let url = URL.init(string:"https://github.com/apple/swift-evolution/blob/main/proposals/0355-regex-syntax-run-time-construction.md") else { return }
+        NSWorkspace.shared.open(url)
+    }
+    
+    
     @IBAction func regexAction(_ sender: Any)
     {
         if donestaring == false
