@@ -1,2 +1,2 @@
 # regex
-RegEx with swift experiments. Requires macOS 13 Ventura.
+Regular expression experiments with Swift. Requires macOS 13 Ventura.
