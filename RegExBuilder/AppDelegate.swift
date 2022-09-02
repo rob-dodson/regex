@@ -52,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
                               "First word (multiline) - (?m)^\\w+",
                               "All three letter words - \\b\\w{3}\\b",
                               "All upper case characters - [A-Z]+",
-                              "Capture first word - ^(\\w+)\\b.*",
+                              "Capture first word - (?m)^(\\w+)",
                               "Upper case characters - [:upper:]*",
                               "Capitalized words - [A-Z]\\w+",
                               "Lines ending with word ending with e - (?m)\\w+e$",
