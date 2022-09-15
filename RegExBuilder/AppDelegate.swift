@@ -69,8 +69,11 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     @IBAction func comboAction(_ sender: Any)
     {
-        let parts = regexComboBox.stringValue.split(separator: " - ")
-        regexTextField.stringValue = String(parts[1])
+        let parts = regexComboBox.stringValue.split(separator:"-")
+        var re = parts[1]
+        re.removeFirst() // remove leading space
+            
+        regexTextField.stringValue = String(re)
         regexAction(self)
     }
     
