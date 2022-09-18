@@ -69,10 +69,9 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     @IBAction func comboAction(_ sender: Any)
     {
-        let parts = regexComboBox.stringValue.split(separator: #/ \- /#)
-        var re = parts[1]
+        let parts = regexComboBox.stringValue.split(separator: #/ - /#)
             
-        regexTextField.stringValue = String(re)
+        regexTextField.stringValue = String(parts[1])
         regexAction(self)
     }
     
