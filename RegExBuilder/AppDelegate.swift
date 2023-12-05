@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
     var donestaring : Bool = false
     var fontName : String!
     var fontSize = 18.0
-    var fontColor = NSColor.systemBrown
+    var fontColor = NSColor.white
     
     
     func applicationDidFinishLaunching(_ aNotification: Notification)
@@ -164,7 +164,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             
             let astr = NSMutableAttributedString(string:text)
             let wholerange = NSRange(location: 0, length: astr.length)
-            astr.addAttributes([.foregroundColor:NSColor.systemBrown,.font:font!], range: wholerange)
+            astr.addAttributes([.foregroundColor:fontColor,.font:font!], range: wholerange)
             
             
             let matches = text.matches(of: regex)

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21503.1"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -693,7 +694,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="645" height="646"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ixj-vm-OCX">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ixj-vm-OCX">
                         <rect key="frame" x="23" y="600" width="186" height="26"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Regular Expression" id="Fq3-5V-gah">
                             <font key="font" metaFont="system" size="22"/>
@@ -701,7 +702,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aae-JI-EE5">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aae-JI-EE5">
                         <rect key="frame" x="23" y="508" width="44" height="26"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Text" id="Gjm-6N-3oS">
                             <font key="font" metaFont="system" size="22"/>
@@ -718,14 +719,14 @@
                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="KbD-C9-llz">
                                     <rect key="frame" x="0.0" y="0.0" width="580" height="356"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="textColor" name="systemBrownColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
                                     <size key="minSize" width="580" height="356"/>
                                     <size key="maxSize" width="631" height="10000000"/>
                                     <attributedString key="textStorage">
                                         <fragment content="TEXT">
                                             <attributes>
-                                                <color key="NSColor" name="systemBrownColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <font key="NSFont" size="18" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -744,7 +745,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vp9-GQ-zyc">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vp9-GQ-zyc">
                         <rect key="frame" x="23" y="91" width="51" height="26"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Shell" id="ynd-Ia-RKY">
                             <font key="font" metaFont="system" size="22"/>
@@ -752,7 +753,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jUZ-WW-CjY">
+                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jUZ-WW-CjY">
                         <rect key="frame" x="25" y="559" width="595" height="31"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="5pk-Fd-Thv">
                             <font key="font" metaFont="system" size="22"/>
@@ -763,7 +764,7 @@
                             <action selector="regexAction:" target="Voe-Tx-rLC" id="TCs-c5-Bsc"/>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SeW-fS-vlh">
+                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SeW-fS-vlh">
                         <rect key="frame" x="25" y="50" width="595" height="31"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="nly-ii-QFn">
                             <font key="font" metaFont="system" size="22"/>
@@ -774,7 +775,7 @@
                             <action selector="shellAction:" target="Voe-Tx-rLC" id="1IW-u5-JKx"/>
                         </connections>
                     </textField>
-                    <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="syc-vx-Spy">
+                    <comboBox focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="syc-vx-Spy">
                         <rect key="frame" x="354" y="527" width="269" height="23"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" alignment="left" title="Examples" completes="NO" numberOfVisibleItems="10" id="Ec4-AE-eFR">
                             <font key="font" metaFont="system"/>
