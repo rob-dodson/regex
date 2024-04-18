@@ -9,7 +9,7 @@ import Cocoa
 
 
 @main
-class AppDelegate: NSObject, NSApplicationDelegate
+class AppDelegate: NSObject, NSApplicationDelegate,NSTextViewDelegate
 {
     @IBOutlet var window: NSWindow!
     @IBOutlet weak var regexTextField: NSTextField!
@@ -63,9 +63,16 @@ class AppDelegate: NSObject, NSApplicationDelegate
             regexComboBox.addItem(withObjectValue:line)
         }
         
+        textField.delegate = self
+        
         donestaring = true
+        regexAction(self)
     }
     
+    func textDidChange(_ notification: Notification)
+    {
+        regexAction(self)
+    }
     
     @IBAction func comboAction(_ sender: Any)
     {
@@ -74,7 +81,6 @@ class AppDelegate: NSObject, NSApplicationDelegate
         regexTextField.stringValue = String(parts[1])
         regexAction(self)
     }
-    
     
     func applicationWillTerminate(_ aNotification: Notification)
     {
@@ -127,6 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
             {
                 textField.string = "Error: \(errText)"
             }
+            regexAction(self)
         }
         catch
         {
@@ -148,6 +155,7 @@ class AppDelegate: NSObject, NSApplicationDelegate
         guard let url = URL.init(string:"https://github.com/apple/swift-evolution/blob/main/proposals/0355-regex-syntax-run-time-construction.md") else { return }
         NSWorkspace.shared.open(url)
     }
+    
     
     
     @IBAction func regexAction(_ sender: Any)
