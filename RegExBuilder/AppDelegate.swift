@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTextViewDelegate
         if let range1 = astr.range(of: text)
         {
             astr[range1].foregroundColor = fontColor
-            astr[range1].font = NSFont.systemFont(ofSize: fontSize)
+            astr[range1].font = .init(NSFont.systemFont(ofSize: fontSize))
             textField.textStorage?.setAttributedString(NSAttributedString(astr))
         }
         
@@ -66,8 +66,10 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTextViewDelegate
         textField.delegate = self
         
         donestaring = true
-        regexAction(self)
+		 
+        doit()
     }
+    
     
     func textDidChange(_ notification: Notification)
     {
@@ -79,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTextViewDelegate
         let parts = regexComboBox.stringValue.split(separator: #/ - /#)
             
         regexTextField.stringValue = String(parts[1])
-        regexAction(self)
+        doit()
     }
     
     func applicationWillTerminate(_ aNotification: Notification)
@@ -159,6 +161,11 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTextViewDelegate
     
     
     @IBAction func regexAction(_ sender: Any)
+    {
+        doit()
+    }
+
+    func doit()
     {
         if donestaring == false
         {
